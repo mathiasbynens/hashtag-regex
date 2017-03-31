@@ -24,7 +24,7 @@ const hashtagRegex = require('hashtag-regex');
 const text = `
 #hashtag
 #©
-＃🤷🏿‍♀️ (\uFF03\u{1F937}\u{1F3FF}\u200D\u2640\uFE0F
+＃🤷🏿‍♀️ (\uFF03\u{1F937}\u{1F3FF}\u200D\u2640\uFE0F)
 `;
 
 const regex = hashtagRegex();
