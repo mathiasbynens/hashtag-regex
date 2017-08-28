@@ -30,8 +30,8 @@ const text = `
 const regex = hashtagRegex();
 let match;
 while (match = regex.exec(text)) {
-  const emoji = match[0];
-  console.log(`Matched sequence ${ emoji } — code points: ${ [...emoji].length }`);
+  const hashtag = match[0];
+  console.log(`Matched sequence ${ hashtag } — code points: ${ [...hashtag].length }`);
 }
 ```
 
