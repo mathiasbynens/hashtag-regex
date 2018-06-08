@@ -1,10 +1,15 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "node": 4
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": 4
+        }
       }
-    }]
+    ]
   ],
-  "plugins": ["transform-unicode-property-regex"]
+  "plugins": [
+    "@babel/plugin-proposal-unicode-property-regex"
+  ]
 }
