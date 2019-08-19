@@ -19,6 +19,8 @@ describe('Hashtag identifier regex', () => {
 
 	test('abc');
 	test('a_b_c');
+	test('a-b-c');
+	test('a+b+c');
 	test('\u{2F9DC}'); // XID_Continue
 
 	const Emoji = require('unicode-tr51/Emoji.js');

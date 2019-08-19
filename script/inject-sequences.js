@@ -15,11 +15,14 @@ for (const sequence of sequences) {
 	emojiSequenceSymbols.add([...sequence]);
 }
 
+const otherAllowedSymbols = ['_', '-', '+']
+
 const Start = regenerate('#', '\uFF03');
 const Continue = regenerate('_')
 	.add(XID_Continue)
 	.add(Emoji)
 	.add(emojiSequenceSymbols)
+	.add(otherAllowedSymbols)
 	.remove(Start);
 
 const file = 'index.js';
