@@ -15,7 +15,7 @@ for (const sequence of sequences) {
 	emojiSequenceSymbols.add([...sequence]);
 }
 
-const otherAllowedSymbols = ['_', '-', '+']
+const otherAllowedSymbols = ['_', '-', '+'];
 
 const Start = regenerate('#', '\uFF03');
 const Continue = regenerate('_')
