@@ -1,19 +1,25 @@
 const assert = require('assert');
 const hashtagRegex = require('../index.js');
 
-const hashtagStartRegex = /[#\uFF03]/;
+const hashtagStartRegex = /[#\uFE5F\uFF03]/;
 
 describe('Hashtag identifier regex', () => {
 
 	const test = (string) => {
-		it(`matches #${ string } as a single unit`, () => {
-			assert(hashtagRegex().test(string));
-			assert.deepEqual(string.match(hashtagRegex())[0], string);
+		const a = `#${ string }`;
+		it(`matches ${ a } as a single unit`, () => {
+			assert(hashtagRegex().test(a));
+			assert.deepEqual(a.match(hashtagRegex())[0], a);
 		});
-		string = `\uFF03${ string }`;
-		it(`matches ${ string } as a single unit`, () => {
-			assert(hashtagRegex().test(string));
-			assert.deepEqual(string.match(hashtagRegex())[0], string);
+		const b = `\uFE5F${ string }`;
+		it(`matches ${ b } as a single unit`, () => {
+			assert(hashtagRegex().test(b));
+			assert.deepEqual(b.match(hashtagRegex())[0], b);
+		});
+		const c = `\uFF03${ string }`;
+		it(`matches ${ c } as a single unit`, () => {
+			assert(hashtagRegex().test(c));
+			assert.deepEqual(c.match(hashtagRegex())[0], c);
 		});
 	};
 
@@ -23,8 +29,13 @@ describe('Hashtag identifier regex', () => {
 	test('a+b+c');
 	test('\u{2F9DC}'); // XID_Continue
 
-	const Emoji = require('unicode-tr51/Emoji.js');
-	for (const codePoint of Emoji) {
+	const package = require('../package.json');
+	const dependencies = Object.keys(package.devDependencies);
+	const version = dependencies.find((name) =>/^unicode-\d/.test(name));
+
+	const Emoji = require(`${ version }/Binary_Property/Emoji/code-points.js`);
+	const Emoji_Component = require(`${ version }/Binary_Property/Emoji_Component/code-points.js`);
+	for (const codePoint of [...Emoji, ...Emoji_Component]) {
 		const string = String.fromCodePoint(codePoint);
 		if (hashtagStartRegex.test(string)) {
 			continue;
@@ -32,7 +43,20 @@ describe('Hashtag identifier regex', () => {
 		test(string);
 	}
 
-	const sequences = require('unicode-tr51/sequences.js');
+	const sequenceProperties = [
+		'Basic_Emoji',
+		'Emoji_Flag_Sequence',
+		'Emoji_Keycap_Sequence',
+		'Emoji_Modifier_Sequence',
+		'Emoji_Tag_Sequence',
+		'Emoji_ZWJ_Sequence',
+	];
+	const sequences = [];
+	for (const prop of sequenceProperties) {
+		const tmp = require(`${ version }/Sequence_Property/Basic_Emoji/index.js`);
+		sequences.concat(...tmp);
+	}
+
 	for (const sequence of sequences) {
 		if (hashtagStartRegex.test(sequence)) {
 			continue;

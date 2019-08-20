@@ -44,7 +44,6 @@
     "@babel/preset-env": "7.5.5",
     "mocha": "^6.2.0",
     "regenerate": "^1.4.0",
-    "unicode-12.1.0": "^0.8.0",
-    "unicode-tr51": "^9.1.0"
+    "unicode-12.1.0": "^0.8.0"
   }
 }

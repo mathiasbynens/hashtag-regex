@@ -2,7 +2,7 @@
 
 _hashtag-regex_ offers a regular expression to match hashtag identifiers [as per the Unicode Standard](http://unicode.org/reports/tr31/#hashtag_identifiers).
 
-This repository contains a script that generates this regular expression based on [the data from Unicode Technical Report #51](https://github.com/mathiasbynens/unicode-tr51). Because of this, the regular expression can easily be updated whenever the Unicode Standard.
+This repository contains a script that generates this regular expression based on the Unicode data. Because of this, the regular expression can easily be updated whenever the Unicode Standard changes.
 
 ## Installation
 

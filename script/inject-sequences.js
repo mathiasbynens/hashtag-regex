@@ -8,21 +8,15 @@ const dependencies = Object.keys(package.devDependencies);
 const version = dependencies.find((name) =>/^unicode-\d/.test(name));
 
 const XID_Continue = require(`${ version }/Binary_Property/XID_Continue/code-points.js`);
-const Emoji = require('unicode-tr51/Emoji.js');
+const Emoji = require(`${ version }/Binary_Property/Emoji/code-points.js`);
+const Emoji_Component = require(`${ version }/Binary_Property/Emoji_Component/code-points.js`);
 
-const emojiSequenceSymbols = regenerate();
-for (const sequence of sequences) {
-	emojiSequenceSymbols.add([...sequence]);
-}
-
-const otherAllowedSymbols = ['_', '-', '+'];
-
-const Start = regenerate('#', '\uFF03');
-const Continue = regenerate('_')
+// https://unicode.org/reports/tr31/#R8
+const Start = regenerate('#', '\uFE5F', '\uFF03');
+const Continue = regenerate('_', '-', '+')
 	.add(XID_Continue)
 	.add(Emoji)
-	.add(emojiSequenceSymbols)
-	.add(otherAllowedSymbols)
+	.add(Emoji_Component)
 	.remove(Start);
 
 const file = 'index.js';
