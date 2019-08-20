@@ -1,7 +1,6 @@
 const fs = require('fs');
 
 const regenerate = require('regenerate');
-const sequences = require('unicode-tr51/sequences.js');
 
 const package = require('../package.json');
 const dependencies = Object.keys(package.devDependencies);
