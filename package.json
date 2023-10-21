@@ -1,6 +1,6 @@
 {
   "name": "hashtag-regex",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A regular expression to match hashtag identifiers as per the Unicode Standard.",
   "homepage": "https://mths.be/hashtag-regex",
   "main": "index.js",
