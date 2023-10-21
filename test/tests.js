@@ -28,10 +28,12 @@ describe('Hashtag identifier regex', () => {
 	test('a-b-c');
 	test('a+b+c');
 	test('\u{2F9DC}'); // XID_Continue
+	test('\u{1F3F3}\uFE0F\u200D\u26A7\uFE0F'); // 🏳️‍⚧️ Transgender flag
+	test('\u{1F3F3}\uFE0F\u200D\u{1F308}'); // 🏳️🏳️‍🌈 Rainbow flag
 
 	const package = require('../package.json');
 	const dependencies = Object.keys(package.devDependencies);
-	const version = dependencies.find((name) =>/^unicode-\d/.test(name));
+	const version = dependencies.find((name) => name.startsWith('@unicode/unicode-'));
 
 	const Emoji = require(`${ version }/Binary_Property/Emoji/code-points.js`);
 	const Emoji_Component = require(`${ version }/Binary_Property/Emoji_Component/code-points.js`);
@@ -45,15 +47,13 @@ describe('Hashtag identifier regex', () => {
 
 	const sequenceProperties = [
 		'Basic_Emoji',
-		'Emoji_Flag_Sequence',
 		'Emoji_Keycap_Sequence',
-		'Emoji_Modifier_Sequence',
-		'Emoji_Tag_Sequence',
-		'Emoji_ZWJ_Sequence',
+		'Emoji_Test',
+		'RGI_Emoji',
 	];
 	const sequences = [];
 	for (const prop of sequenceProperties) {
-		const tmp = require(`${ version }/Sequence_Property/Basic_Emoji/index.js`);
+		const tmp = require(`${ version }/Sequence_Property/${ prop }/index.js`);
 		sequences.concat(...tmp);
 	}
 
