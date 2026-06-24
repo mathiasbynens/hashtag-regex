@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
-    "@babel/core": "7.5.5",
+    "@babel/core": "7.29.6",
     "@babel/plugin-proposal-unicode-property-regex": "7.4.4",
     "@babel/preset-env": "7.5.5",
     "@unicode/unicode-15.1.0": "^1.5.2",
